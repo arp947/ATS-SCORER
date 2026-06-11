@@ -3,6 +3,19 @@ FROM python:3.12-slim
 # Set the working directory inside the container
 WORKDIR /app
 
+# Install OS libraries required by python-magic and PDF rendering.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libmagic1 \
+        file \
+        shared-mime-info \
+        libcairo2 \
+        libpango-1.0-0 \
+        libpangoft2-1.0-0 \
+        libgdk-pixbuf-2.0-0 \
+        libffi8 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy the backend requirements file first
 COPY backend/requirements.txt ./backend/
 
