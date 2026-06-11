@@ -1,5 +1,5 @@
 import io
-import magic
+from pathlib import Path
 from typing import Optional, Tuple
 import pdfplumber
 from docx import Document
@@ -21,11 +21,45 @@ from backend.core.config import(
     SUPPORTED_MIME_TYPES
 )
 
+try:
+    import magic
+except Exception as exc:
+    magic = None
+    _MAGIC_IMPORT_ERROR = exc
+else:
+    _MAGIC_IMPORT_ERROR = None
+
 class FileParsingError(Exception):
     pass
 
 class FileValidationError(Exception):
     pass
+
+def _detect_file_type(file_data: bytes, filename: str) -> Tuple[Optional[str], str]:
+    if magic is not None:
+        try:
+            mime_type = magic.from_buffer(file_data, mime=True)
+            return SUPPORTED_MIME_TYPES.get(mime_type), mime_type
+        except Exception as exc:
+            log_warning(
+                f'libmagic detection failed, falling back to extension/signature: {exc}',
+                context='validate_file',
+            )
+    else:
+        log_warning(
+            f'libmagic unavailable, falling back to extension/signature: {_MAGIC_IMPORT_ERROR}',
+            context='validate_file',
+        )
+
+    suffix = Path(filename).suffix.lower()
+    if file_data.startswith(b'%PDF') and suffix == '.pdf':
+        return 'pdf', 'application/pdf'
+    if file_data.startswith(b'PK') and suffix == '.docx':
+        return 'docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    if file_data.startswith(b'\xd0\xcf\x11\xe0') and suffix == '.doc':
+        return 'doc', 'application/msword'
+
+    return None, f'unknown ({suffix or "no extension"})'
 
 def validate_file(file_data:bytes, filename:str)-> Tuple[bool,str,Optional[str]]:
     file_size_bytes = len(file_data)
@@ -40,19 +74,15 @@ def validate_file(file_data:bytes, filename:str)-> Tuple[bool,str,Optional[str]]
     if file_size_bytes == 0:
         return False, 'upload file is empty ... please check the file you have uploaded and try again'
     
-    try:
-        mime_type = magic.from_buffer(file_data,mime=True)
-    except Exception as e:
-        return False, f'error determining the file type: {e}',None
-
-    if mime_type not in SUPPORTED_MIME_TYPES:
+    file_type, mime_type = _detect_file_type(file_data, filename)
+    if not file_type:
         supported = ','.join(SUPPORTED_MIME_TYPES.keys()).upper()
         return False,(
             f'Unsupported file type: {mime_type}.'
             f'Please upload one of: {supported}'
         ),None
 
-    return True, '', SUPPORTED_MIME_TYPES[mime_type]
+    return True, '', file_type
 
 
 def _extract_pdf_hyperlinks(file_data: bytes) -> str:
