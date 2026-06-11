@@ -1,3 +1,12 @@
+---
+title: ATS SCorer
+emoji: 🚀
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+---
 # ATS Resume Scorer
 
 An AI-powered resume analyzer that scores resumes against job descriptions using NLP and ML.
