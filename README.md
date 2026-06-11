@@ -105,6 +105,47 @@ python -m streamlit run streamlit_app.py
 - **Backend** — Hugging Face Spaces (Docker)
 - **Frontend** — Streamlit Community Cloud
 
+### Required production configuration
+
+Set these in **Streamlit Community Cloud secrets** so the frontend can sign users in
+and call the backend:
+
+```toml
+[supabase]
+SUPABASE_URL = "https://your-project.supabase.co"
+SUPABASE_ANON_KEY = "your_supabase_anon_key"
+
+[backend]
+url = "https://your-huggingface-space-url"
+
+[google_oauth]
+redirect_uri = "https://your-streamlit-app.streamlit.app"
+```
+
+Set these in **Hugging Face Space secrets/environment variables** so the backend can
+verify Supabase access tokens, write history, and call Groq:
+
+```env
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your_supabase_service_role_key
+SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_JWT_SECRET=your_supabase_jwt_secret
+GROQ_API_KEY=your_groq_api_key
+```
+
+In **Supabase Authentication settings**:
+
+- Keep email confirmations enabled only if users are expected to confirm their inbox before signing in.
+- Enable the Google provider under Authentication > Providers > Google.
+- Add your Google OAuth client ID and client secret.
+- Add the Streamlit URL as an allowed redirect URL/site URL, for example `https://your-streamlit-app.streamlit.app`.
+
+Common auth errors:
+
+- `Email not confirmed` means Supabase created the user but requires email confirmation before password sign-in.
+- `Unsupported provider: provider is not enabled` means Google auth is not enabled/configured in Supabase.
+- `Backend returned 500: Auth not configured on the server` means the Hugging Face backend is missing `SUPABASE_URL` and/or `SUPABASE_JWT_SECRET`; Streamlit secrets do not configure the backend.
+
 ## License
 
 MIT

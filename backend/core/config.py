@@ -6,8 +6,10 @@ from pathlib import Path
 # silently under uvicorn reload, leaving env vars unset.
 try:
     from dotenv import load_dotenv
-    _ENV_PATH = Path(__file__).resolve().parents[2] / '.env'
-    load_dotenv(_ENV_PATH)
+    _ROOT = Path(__file__).resolve().parents[2]
+    for _ENV_PATH in (_ROOT / '.env', _ROOT / 'backend' / '.env'):
+        if _ENV_PATH.exists():
+            load_dotenv(_ENV_PATH, override=False)
 except ImportError:
     pass
 
