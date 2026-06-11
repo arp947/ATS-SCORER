@@ -9,11 +9,11 @@ COPY backend/requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 1. Download the spacy model during the build stage
+# 1. Download the primary spacy model during the build stage
 RUN python -m spacy download en_core_web_md
 
-# 2. Pre-download your specific SentenceTransformer model during the build stage so it works offline
-RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+# 2. Automatically pre-download whatever SENTENCE_TRANSFORMER_MODEL is set to in your config
+RUN python -c "from backend.core.config import SENTENCE_TRANSFORMER_MODEL; from sentence_transformers import SentenceTransformer; SentenceTransformer(SENTENCE_TRANSFORMER_MODEL)"
 
 # Copy the rest of the backend application code
 COPY backend/ .
@@ -22,4 +22,4 @@ COPY backend/ .
 EXPOSE 7860
 
 # Run FastAPI using Uvicorn
-CMD ["python", "-m", "uvicorn", "main.py:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
