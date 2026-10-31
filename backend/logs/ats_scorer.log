@@ -124,3 +124,65 @@
 2026-06-11 01:23:19,573 - INFO - Groq parsed experience count: 2
 2026-06-11 01:23:24,698 - INFO - Saved analysis for user a665b2dc-e3ed-4d4f-a3e2-255c2e6d7ac9: 2
 2026-06-11 01:26:26,424 - INFO - shutting down the api!!
+2026-10-28 13:52:05,612 - INFO - Starting ATS Resume Analyzer API...
+2026-10-28 13:52:05,628 - INFO - Loading spaCy NLP model: en_core_web_sm
+2026-10-28 13:52:40,421 - WARNING - en_core_web_sm not found — falling back to en_core_web_sm
+2026-10-28 13:56:09,239 - INFO - Starting ATS Resume Analyzer API...
+2026-10-28 13:56:09,250 - INFO - Loading spaCy NLP model: en_core_web_sm
+2026-10-28 13:56:23,936 - INFO - Loaded en_core_web_sm
+2026-10-28 13:56:23,936 - INFO - Loading SentenceTransformer: all-MiniLM-L6-v2
+2026-10-28 14:01:33,865 - INFO - Starting ATS Resume Analyzer API...
+2026-10-28 14:01:33,865 - INFO - Loading spaCy NLP model: en_core_web_sm
+2026-10-28 14:01:45,965 - INFO - Loaded en_core_web_sm
+2026-10-28 14:01:45,965 - INFO - Loading SentenceTransformer: all-MiniLM-L6-v2
+2026-10-28 14:03:48,566 - INFO - Loaded all-MiniLM-L6-v2
+2026-10-28 14:03:48,566 - INFO - All models loaded. API is ready to serve requests.
+2026-10-28 14:03:55,470 - ERROR - Neither SUPABASE_URL (for JWKS) nor SUPABASE_JWT_SECRET configured — cannot verify tokens
+2026-10-29 09:26:35,645 - INFO - Starting ATS Resume Analyzer API...
+2026-10-29 09:26:35,677 - INFO - Loading spaCy NLP model: en_core_web_sm
+2026-10-29 09:26:47,573 - INFO - Loaded en_core_web_sm
+2026-10-29 09:26:47,573 - INFO - Loading SentenceTransformer: all-MiniLM-L6-v2
+2026-10-29 09:28:44,003 - INFO - Loaded all-MiniLM-L6-v2
+2026-10-29 09:28:44,003 - INFO - All models loaded. API is ready to serve requests.
+2026-10-29 09:28:59,430 - INFO - parse_Resume_file: parsing file :ArpitSinghResume.pdf
+2026-10-29 09:28:59,803 - INFO - parse_resume_file: Extracted 2962 chars from ArpitSinghResume.pdf
+2026-10-29 09:28:59,803 - INFO - Parsed 'ArpitSinghResume.pdf': 2962 chars extracted
+2026-10-29 09:29:03,089 - ERROR - Full analysis pipeline failed: Error code: 404 - {'error': {'message': 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}
+2026-10-29 09:29:23,546 - INFO - shutting down the api!!
+2026-10-29 09:29:34,130 - INFO - Starting ATS Resume Analyzer API...
+2026-10-29 09:29:34,130 - INFO - Loading spaCy NLP model: en_core_web_sm
+2026-10-29 09:29:44,217 - INFO - Loaded en_core_web_sm
+2026-10-29 09:29:44,217 - INFO - Loading SentenceTransformer: all-MiniLM-L6-v2
+2026-10-29 09:31:03,752 - INFO - Loaded all-MiniLM-L6-v2
+2026-10-29 09:31:03,752 - INFO - All models loaded. API is ready to serve requests.
+2026-10-29 09:31:04,909 - INFO - parse_Resume_file: parsing file :ArpitSinghResume.pdf
+2026-10-29 09:31:05,197 - INFO - parse_resume_file: Extracted 2962 chars from ArpitSinghResume.pdf
+2026-10-29 09:31:05,197 - INFO - Parsed 'ArpitSinghResume.pdf': 2962 chars extracted
+2026-10-29 09:31:07,195 - ERROR - Full analysis pipeline failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-10-29 09:31:22,305 - INFO - parse_Resume_file: parsing file :ArpitSinghResume (2).pdf
+2026-10-29 09:31:22,588 - INFO - parse_resume_file: Extracted 3705 chars from ArpitSinghResume (2).pdf
+2026-10-29 09:31:22,588 - INFO - Parsed 'ArpitSinghResume (2).pdf': 3705 chars extracted
+2026-10-29 09:31:22,684 - ERROR - Full analysis pipeline failed: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-10-29 09:32:11,202 - INFO - shutting down the api!!
+2026-10-29 09:32:16,132 - INFO - Starting ATS Resume Analyzer API...
+2026-10-29 09:32:16,133 - INFO - Loading spaCy NLP model: en_core_web_sm
+2026-10-29 09:32:25,933 - INFO - Loaded en_core_web_sm
+2026-10-29 09:32:25,933 - INFO - Loading SentenceTransformer: all-MiniLM-L6-v2
+2026-10-29 09:33:49,774 - INFO - Loaded all-MiniLM-L6-v2
+2026-10-29 09:33:49,774 - INFO - All models loaded. API is ready to serve requests.
+2026-10-29 09:33:51,175 - INFO - parse_Resume_file: parsing file :ArpitSinghResume (2).pdf
+2026-10-29 09:33:51,505 - INFO - parse_resume_file: Extracted 3705 chars from ArpitSinghResume (2).pdf
+2026-10-29 09:33:51,505 - INFO - Parsed 'ArpitSinghResume (2).pdf': 3705 chars extracted
+2026-10-29 09:33:56,481 - INFO - Groq parsed summary: ''
+2026-10-29 09:33:56,481 - INFO - Groq parsed skills count: 44
+2026-10-29 09:33:56,481 - INFO - Groq parsed experience count: 0
+2026-10-29 09:34:07,385 - ERROR - Failed to save analysis to Supabase: Client error '401 Unauthorized' for url 'https://caglunibultiqjvptnzi.supabase.co/rest/v1/analyses'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+2026-10-29 09:34:11,626 - INFO - parse_Resume_file: parsing file :ArpitSinghResume (2).pdf
+2026-10-29 09:34:11,927 - INFO - parse_resume_file: Extracted 3705 chars from ArpitSinghResume (2).pdf
+2026-10-29 09:34:11,927 - INFO - Parsed 'ArpitSinghResume (2).pdf': 3705 chars extracted
+2026-10-29 09:34:14,535 - INFO - Groq parsed summary: ''
+2026-10-29 09:34:14,535 - INFO - Groq parsed skills count: 44
+2026-10-29 09:34:14,536 - INFO - Groq parsed experience count: 0
+2026-10-29 09:34:22,082 - ERROR - Failed to save analysis to Supabase: Client error '401 Unauthorized' for url 'https://caglunibultiqjvptnzi.supabase.co/rest/v1/analyses'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401

@@ -20,7 +20,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Install CPU-only torch FIRST to prevent the GPU version (~2.5GB) from being pulled in
-RUN pip install --no-cache-dir torch==2.3.1 --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
 
 COPY backend/requirements.txt ./backend/
 
